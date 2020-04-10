@@ -5,7 +5,7 @@
 #import "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE16\\MSO.DLL" \
 rename("RGB","_RGB")\
 rename("DocumentProperties", "_DocumentProperties")\
-rename("SearchPath","_SearchPath")
+rename("SearchPath","_SearchPath") \
 
 #import "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\VBA\\VBA6\\VBE6EXT.OLB"
 

@@ -381,7 +381,16 @@ map<unsigned, Customer>& CustomerHandler::getCustomers()
 
 Customer* CustomerHandler::getCustomerById(unsigned id)
 {
-	return &(customers_.find(id)->second);
+	auto it = customers_.find(id);
+
+	if (it != customers_.end())
+	{
+		return &it->second;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Customer* CustomerHandler::getCurrentCustomer()
@@ -706,6 +715,11 @@ void CustomerHandler::deleteCustomer()
 		cout << "¬ведите ид клиента: ";
 		cin >> id;
 		integerCheck(id);
+
+		if (stoul(id) > customers_.size())
+		{
+			throw CustomerNotFoundException();
+		}
 
 		customers_.erase(stoul(id));
 		writeInTxt();

@@ -182,6 +182,8 @@ void PerfumeryHandler::editType()
 					showEditPerfume();
 					cout << "Тип успешно изменен!" << endl;
 					return;
+				case 3:
+					return;
 				default:
 					break;
 				}
@@ -497,7 +499,7 @@ void PerfumeryHandler::editMenu()
 					break;
 				case PerfumeryEditMenuAction::BACK_TO_PERFUMERY_MENU :
 					perfumes_.erase(next(perfumes_.begin(), stoul(id)));
-					perfumes_.emplace(++next(perfumes_.begin(), stoul(id)), *perfumeryToEdit_);
+					perfumes_.emplace(next(perfumes_.begin(), stoul(id)), *perfumeryToEdit_);
 					writeInTxt();
 					perfumeryToEdit_ = nullptr;
 					return;
@@ -523,11 +525,13 @@ void PerfumeryHandler::editMenu()
 	{
 		system("cls");
 		cout << ex.getError() << endl;
+		system("pause");
 	}
 	catch (PerfumeryNotFoundException & ex)
 	{
 		system("cls");
 		cout << ex.getError() << endl;
+		system("pause");
 	}
 }
 
@@ -610,7 +614,7 @@ void PerfumeryHandler::deletePerfumery()
 		cin >> id;
 		integerCheck(id);
 
-		if (stoul(id) > perfumes_.size())
+		if (stoul(id) + 1 > perfumes_.size())
 		{
 			throw PerfumeryNotFoundException();
 		}
@@ -745,7 +749,7 @@ void PerfumeryHandler::showEditPerfume()
 	cout << "|       Бренд      |     Тип     |      Аромат     |   Группа ароматов   |   Производитель  |   Цена   |" << endl;
 	cout << "+------------------+-------------+-----------------+---------------------+------------------+----------+" << endl;
 
-	cout << *perfumeryToEdit_;
+	cout << *perfumeryToEdit_ << endl;
 
 	cout << "+------------------+-------------+-----------------+---------------------+------------------+----------+" << endl;
 }
