@@ -58,6 +58,12 @@ void Customer::writeInFile(const string& filename)
 	ofstream customersData;
 	customersData.open(filename, ios::trunc);
 
+	if (!customersData)
+	{
+		cerr << "Невозможно открыть файл " << filename << " !\n";
+		exit(1);
+	}
+
 	if (customersData.is_open())
 	{
 		customersData << this->firstname_ << ";"

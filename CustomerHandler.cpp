@@ -210,6 +210,12 @@ void CustomerHandler::writeInTxt()
 	ofstream customersData;
 	customersData.open(dataFilename, ios::trunc);
 
+	if (!customersData)
+	{
+		cerr << "Невозможно открыть файл " << dataFilename << " !\n";
+		exit(1);
+	}
+
 	if (customersData.is_open())
 	{
 		for (auto it = customers_.begin(); it != customers_.end(); it++)
@@ -237,6 +243,12 @@ void CustomerHandler::readFromTxt()
 	ifstream customersData;
 
 	customersData.open(dataFilename);
+
+	if (!customersData)
+	{
+		cerr << "Невозможно открыть файл " << dataFilename << " !\n";
+		exit(1);
+	}
 
 	if (customersData.is_open())
 	{

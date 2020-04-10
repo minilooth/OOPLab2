@@ -247,6 +247,12 @@ void PerfumeryHandler::writeInTxt()
 	ofstream perfumeryData;
 	perfumeryData.open(dataFilename, ios::trunc);
 
+	if (!perfumeryData)
+	{
+		cerr << "Невозможно открыть файл " << dataFilename << " !\n";
+		exit(1);
+	}
+
 	if (perfumeryData.is_open())
 	{
 		for (auto it = perfumes_.begin(); it != perfumes_.end(); it++)
@@ -276,6 +282,12 @@ void PerfumeryHandler::readFromTxt()
 	ifstream perfumeryData;
 
 	perfumeryData.open(dataFilename);
+
+	if (!perfumeryData)
+	{
+		cerr << "Невозможно открыть файл " << dataFilename << " !\n";
+		exit(1);
+	}
 
 	if (perfumeryData.is_open())
 	{
